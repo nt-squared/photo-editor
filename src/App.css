@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 
+    "image sidebar"
+    "slider sidebar";
+  width: 80vw;
   min-height: 100vh;
+  margin-inline: auto;
+  background-color: #dadada;
+}
+
+/* Image Section */
+.image-container {
+  grid-area: image;
+  background-image: url('https://source.unsplash.com/EwKXn5CapA4');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Sidebar Section */
+.sidebar-container {
+  grid-area: sidebar;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: stretch;
+  background-color: hsl(265, 100%, 86%);
+  border-left: 1px solid hsl(265, 100%, 56%);
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar-item {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: hsl(265, 100%, 86%);
+  padding: 1rem;
+  position: relative;
+  transition: background-color 150ms;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  inset: auto 10% 0;
+  height: 1px;
+  background-color: hsl(265, 100%, 46%);
+}
+
+.sidebar-item:is(:hover, :focus) {
+  background-color: hsl(265, 100%, 76%);
+}
+
+.sidebar-item.active {
+  background-color: hsl(265, 100%, 70%);
+}
+
+/* Slider Section */
+.slider-container {
+  grid-area: slider;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.slider {
+  display: block;
+  width: 75%;
+  margin-inline: auto;
+  cursor: pointer;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 2rem;
+  margin-block: 0 0.5rem;
 }
